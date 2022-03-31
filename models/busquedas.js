@@ -21,18 +21,20 @@ class Busquedas {
             const instance = axios.create({
                 baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json`,
                 params: this.paramsMapbox
-                
-                // ? proximity = ip & types=place % 2Cpostcode % 2Caddress % 2Cregion & language=es & access_token=`
             });
         
 
             const response = await instance.get();
 
-            console.log(response.data);
+            return response.data.features.map(lugar => ({
+                id: lugar.id,
+                nombre: lugar.place_name,
+                lng: lugar.center[0],
+                lat: lugar.center[1],
+            }));
 
-            return [];
         } catch (error) {
-            console.error(error);
+            return [];
         }
     }
 
