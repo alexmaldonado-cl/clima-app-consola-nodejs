@@ -1,5 +1,8 @@
+require('dotenv').config();
 const { leerInput, inquirerMenu, pausa } = require("./helpers/inquirer");
 const Busquedas = require("./models/busquedas");
+
+// console.log(process.env);
 
 const main = async () => {
 
@@ -14,6 +17,7 @@ const main = async () => {
                 //1 -Mostrar mensaje
                 const lugar = await leerInput('Ciudad: ');
                 await busquedas.ciudad(lugar);
+
                 //2 -Buscar los lugares
                 //3 - Seleccionar el lugar
                 //4 - Clima
